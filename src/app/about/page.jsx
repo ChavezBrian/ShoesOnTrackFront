@@ -3,7 +3,6 @@ import Navbar from "../../components/navbar/Navbar.jsx";
 import Footer from "../../components/footer/Footer.jsx";
 import "./aboutUs.css";
 import Newsletter from "../../components/newsletter/Newsletter.jsx";
-import Image from "next/image"
 
 const linkedin = (
   <svg
@@ -38,11 +37,9 @@ const About = () => {
         <div>
           <div className="cards-container">
             <div className="card-container">
-              <Image
+              <img
                 src="https://images.pexels.com/photos/846741/pexels-photo-846741.jpeg?auto=compress&cs=tinysrgb&w=600"
                 alt=""
-                width={width}
-                height={heigth}
               />
               <div className="card-info">
                 <p className="card-name">Frank Yepes</p>
@@ -68,11 +65,9 @@ const About = () => {
               </div>
             </div>
             <div className="card-container">
-              <Image
+              <img
                 src="https://st4allthings4p4ci.blob.core.windows.net/allthingshair/allthingshair/wp-content/uploads/sites/11/2021/12/14152331/corte-de-pelo-degradado.jpg"
                 alt=""
-                width={width}
-                height={heigth}
               />
               <div className="card-info">
                 <p className="card-name">Juan Gutierrez</p>
@@ -98,11 +93,9 @@ const About = () => {
               </div>
             </div>
             <div className="card-container">
-              <Image
+              <img
                 src="https://images.pexels.com/photos/1121796/pexels-photo-1121796.jpeg?auto=compress&cs=tinysrgb&w=600"
                 alt=""
-                width={width}
-                height={heigth}
               />
               <div className="card-info">
                 <p className="card-name">Agustin Almonacid</p>
@@ -128,11 +121,9 @@ const About = () => {
               </div>
             </div>
             <div className="card-container">
-              <Image
+              <img
                 src="https://images.pexels.com/photos/716411/pexels-photo-716411.jpeg?auto=compress&cs=tinysrgb&w=600"
                 alt=""
-                width={width}
-                height={heigth}
               />
               <div className="card-info">
                 <p className="card-name">Sergio Velez</p>
@@ -158,11 +149,9 @@ const About = () => {
               </div>
             </div>
             <div className="card-container">
-              <Image
+              <img
                 src="https://images.pexels.com/photos/840916/pexels-photo-840916.jpeg?auto=compress&cs=tinysrgb&w=600"
                 alt=""
-                width={width}
-                height={heigth}
               />
               <div className="card-info">
                 <p className="card-name">Brian Chavez</p>
@@ -188,11 +177,9 @@ const About = () => {
               </div>
             </div>
             <div className="card-container">
-              <Image
+              <img
                 src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                 alt=""
-                width={width}
-                height={heigth}
               />
               <div className="card-info">
                 <p className="card-name">Jesus Acosta</p>
@@ -218,11 +205,9 @@ const About = () => {
               </div>
             </div>
             <div className="card-container">
-              <Image
+              <img
                 src="https://img.freepik.com/foto-gratis/personas-que-sonrie-alegre-hombres-guapos_1187-6057.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1699228800&semt=ais"
                 alt=""
-                width={width}
-                height={heigth}
               />
               <div className="card-info">
                 <p className="card-name">Nicolas Neris</p>

@@ -80,9 +80,7 @@ function Contact() {
           {/*Loader*/}
           {isLoading && (
             <div className="loader-overlay">
-              <div className="loader-container">
-                <rings color="#007bff" />
-              </div>
+              <div className="loader-container"></div>
             </div>
           )}
 
