@@ -7,7 +7,7 @@ const Card = ({id, name, brandName, description , price, color, image}) => {
             <div className={style.brand}>{brandName}</div>
             <div className={style.containerImg}>
                 <Link href={`/detail/${id}`}>
-                    <img src={image} alt={name}></img> </Link>
+                    <Image src={image} alt={name}/> </Link>
             </div>
             <div className={style.details}>
                 <h4>{name}</h4>

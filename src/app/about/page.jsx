@@ -37,7 +37,7 @@ const About = () => {
         <div>
           <div className="cards-container">
             <div className="card-container">
-              <Img
+              <img
                 src="https://images.pexels.com/photos/846741/pexels-photo-846741.jpeg?auto=compress&cs=tinysrgb&w=600"
                 alt=""
               />
@@ -93,7 +93,7 @@ const About = () => {
               </div>
             </div>
             <div className="card-container">
-              <Img
+              <img
                 src="https://images.pexels.com/photos/1121796/pexels-photo-1121796.jpeg?auto=compress&cs=tinysrgb&w=600"
                 alt=""
               />
@@ -121,7 +121,7 @@ const About = () => {
               </div>
             </div>
             <div className="card-container">
-              <Img
+              <img
                 src="https://images.pexels.com/photos/716411/pexels-photo-716411.jpeg?auto=compress&cs=tinysrgb&w=600"
                 alt=""
               />
@@ -149,7 +149,7 @@ const About = () => {
               </div>
             </div>
             <div className="card-container">
-              <Img
+              <img
                 src="https://images.pexels.com/photos/840916/pexels-photo-840916.jpeg?auto=compress&cs=tinysrgb&w=600"
                 alt=""
               />
@@ -205,7 +205,7 @@ const About = () => {
               </div>
             </div>
             <div className="card-container">
-              <Img
+              <img
                 src="https://img.freepik.com/foto-gratis/personas-que-sonrie-alegre-hombres-guapos_1187-6057.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1699228800&semt=ais"
                 alt=""
               />

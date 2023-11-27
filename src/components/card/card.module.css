@@ -42,7 +42,7 @@
     height: 300px;
 }
 
-.container img {
+.container Image {
     max-width: 500px;
     max-height: 250px;
     border: solid black 2px;
