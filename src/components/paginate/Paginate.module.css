@@ -1,0 +1,80 @@
+.nav {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+.ul li {
+  list-style: none;
+}
+
+.ul {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  padding-top:5px;
+  padding-bottom: 5em;
+}
+
+.li {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+  margin: 5px;
+  width: 30px;
+  height: 30px;
+  background-color: rgb(0, 0, 0);
+  border: solid 1px;
+  border-radius: 5px;
+  cursor: pointer;
+  -webkit-box-shadow: 4px 5px 7px 1px rgba(0, 0, 0, 0.77);
+  box-shadow: 4px 5px 7px 1px rgba(0, 0, 0, 0.77);
+}
+
+.p {
+  font-weight: bold;
+  display: flex;
+  color: rgb(37, 46, 103);
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+  margin: 5px;
+  width: 30px;
+  height: 30px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+  cursor: pointer;
+  -webkit-box-shadow: 4px 5px 7px 1px rgba(0, 0, 0, 0.77);
+  box-shadow: 4px 5px 7px 1px rgba(0, 0, 0, 0.77);
+}
+
+.activePage {
+  background-color: tomato;
+  border: none;
+  margin: 5px;
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: black;
+}
+
+
+
+/* Media Query para pantallas más pequeñas */
+@media screen and (max-width: 900px) {
+  .ul {
+    flex-wrap: wrap; /* Ajusta el contenido en varias líneas */
+    justify-content: center; /* Centra los elementos */
+    padding-bottom: 1em; /* Ajusta el margen inferior */
+  }
+  
+  .li {
+    margin: 5px 0.5em; /* Ajusta el margen */
+  }
+}
+
+
+
+
