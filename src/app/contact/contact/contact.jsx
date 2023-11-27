@@ -81,7 +81,7 @@ function Contact() {
           {isLoading && (
             <div className="loader-overlay">
               <div className="loader-container">
-                <Rings color="#007bff" />
+                <rings color="#007bff" />
               </div>
             </div>
           )}
