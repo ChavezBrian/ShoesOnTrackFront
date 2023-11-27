@@ -78,12 +78,6 @@ function Contact() {
       <section className="bg-blue-400 contactSection">
         <div className="contentContact max-w-screen-lg mx-auto p-4">
           {/*Loader*/}
-          {isLoading && (
-            <div className="loader-overlay">
-              <div className="loader-container"></div>
-            </div>
-          )}
-
           <div className="contact-container flex">
             {/*1era columna*/}
 
