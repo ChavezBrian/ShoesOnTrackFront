@@ -9,7 +9,7 @@ import { getByID, clearDetail } from "@/redux/actions";
 
 const Detail = () => {
   const handleClick = async () => {
-    const response = await fetch("http://localhost:3001/payment/create-order", {
+    const response = await fetch("https://deploy-back-wine.vercel.app/payment/create-order", {
       method: "POST",
     });
     const data = await response.json();

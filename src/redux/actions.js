@@ -18,7 +18,7 @@ import {
   RESET
 } from "./action-type";
 
-const URL = 'http://localhost:3001';
+const URL = 'https://deploy-back-wine.vercel.app/';
 
 
 export const showLoader = () => {
