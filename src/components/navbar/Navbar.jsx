@@ -1,5 +1,6 @@
 import Link from "next/link";
 import style from "./style.module.css";
+import LoginAuth from "../loginauth/LoginAUTH";
 
 const NavBar = () => {
   return (
@@ -13,9 +14,7 @@ const NavBar = () => {
       <Link href={"/about" } className={style.button} >
         About
       </Link>
-      <Link href={"/login"} className={style.button}>
-        Login
-      </Link>
+      <LoginAuth/>
     </nav>
   );
 };

@@ -13,7 +13,6 @@ function Header({initialFilters, setInitialFilters, initialPageSet, setInitialPa
         <Image src={logo} width={200} height={120} alt="Search" />
       </div>
       <SearchBar initialFilters={initialFilters} setInitialFilters={setInitialFilters} initialPageSet={initialPageSet} setInitialPageSet={setInitialPageSet}/>
-      <Navbar />
     </div>
   );
 }

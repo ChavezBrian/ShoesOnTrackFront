@@ -6,11 +6,13 @@ import store from "@/redux/store";
 import Header from "@/components/header/header";
 import Footer from "@/components/footer/Footer";
 import Newsletter from "@/components/newsletter/Newsletter";
+import NavBar from "@/components/navbar/Navbar";
 import Image from "next/image";
 
 const LoginPage = () => {
   return (
     <Provider store={store}>
+      <NavBar/>
       <Header />
       <div className={style.pageContainer}>
         <div className={style.container}>

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Header from "@/components/header/header";
 import Newsletter from "@/components/newsletter/Newsletter";
 import Footer from "@/components/footer/Footer";
+import NavBar from "@/components/navbar/Navbar";
 import "./Contact.css";
 // Sweetalert
 import Swal from "sweetalert2";
@@ -74,10 +75,12 @@ function Contact() {
   // Renderizado
   return (
     <>
+    <NavBar/>
       <Header />
       <section className="bg-blue-400 contactSection">
         <div className="contentContact max-w-screen-lg mx-auto p-4">
           {/*Loader*/}
+
           <div className="contact-container flex">
             {/*1era columna*/}
 

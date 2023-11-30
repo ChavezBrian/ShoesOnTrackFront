@@ -7,6 +7,7 @@ import FilterCategory from "@/components/filters/filterCategory";
 import Footer from "@/components/footer/Footer";
 import Newsletter from "@/components/newsletter/Newsletter";
 import Paginate from "@/components/paginate/paginate.jsx";
+import NavBar from "@/components/navbar/Navbar";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import button from "@/helpers/assets/clockwise.svg";
@@ -90,6 +91,7 @@ const HomePage = () => {
   const PriceOpt = ["highest", "lowest"];
   return (
     <div className={styles?.home}>
+      <NavBar/>
       <Header 
       initialFilters={initialFilters}
       setInitialFilters={setInitialFilters}
