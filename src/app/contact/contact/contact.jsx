@@ -34,7 +34,7 @@ function Contact() {
       const dataToSend = { name, phone, message };
       try {
         dispatch(showLoader());
-        const response = await fetch("https://deploy-front-gamma.vercel.app/contact/send", {
+        const response = await fetch("http://localhost:3000/contact/send", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(dataToSend),

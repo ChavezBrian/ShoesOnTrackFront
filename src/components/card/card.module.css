@@ -9,13 +9,14 @@
 }
 
 .container {
-    width: 300px;
+    width: 265px;
     height: 400px;
     position: relative;
     box-shadow: 0 0px 20px #fefefe00;
     margin: 10px auto;
-    background: #fafafa;
-    margin-left: 10px;
+    background: #f9f9f9;
+    margin-left: 14px;
+    border-radius: 3%;
     transition: box-shadow 0.3s ease-in-out; /* Agregamos una transición para suavizar el cambio de sombra al pasar el mouse */
 }
 
@@ -25,14 +26,15 @@
 
 .brand {
     position: absolute;
-    left: 10px;
-    top: 10px;
+    left: 33px;
+    top: 40px;
     text-transform: uppercase;
     font-size: 12px;
     font-weight: 700;
     background: rgba(233, 163, 44, 0.786);
     color: #fff;
     padding: 3px 9px;
+
 }
 
 .containerImg {
@@ -45,7 +47,7 @@
 .container img {
     max-width: 500px;
     max-height: 250px;
-    border: solid black 2px;
+    border: solid #fffcfc 2px;
     border-radius: 8px; /* Agregamos bordes redondeados a la imagen */
 }
 
@@ -77,12 +79,22 @@
     font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
-    color: #ccc; /* Reducimos el margen inferior */
+    color: #131212; /* Reducimos el margen inferior */
+    margin-top: -15px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
 }
 
 .price {
-    font-size: 16px; /* Aumentamos el tamaño del precio */
+    font-size: 25px; /* Aumentamos el tamaño del precio */
     color: #fbb72c;
     font-weight: 600; /* Agregamos un poco de espacio sobre el precio */
+    margin-top: 3%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.name{
+    margin-top: 3%;
+    font-size: 15px;
+    font-family: 'Times New Roman', Times, serif
+}

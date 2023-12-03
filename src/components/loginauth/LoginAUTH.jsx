@@ -6,11 +6,14 @@ import { useDispatch } from "react-redux";
 import Login from "@/app/api/auth/loginButton";
 import Logout from "@/app/api/auth/logoutButton";
 import styles from "./login.module.css";
+import { userRegister } from "@/redux/actions";
 
 const LoginAuth = () => {
   const { user, isLoading } = useUser();
   const [registrationRequested, setRegistrationRequested] = useState(false);
   const [showEmailVerificationAlert, setShowEmailVerificationAlert] = useState(false);
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,7 +26,7 @@ const LoginAuth = () => {
             email: user.email,
             email_verified: user.email_verified,
           };
-
+          dispatch(userRegister(userData));
           
         }
       }

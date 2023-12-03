@@ -12,6 +12,8 @@ import {
   SORT_PRICE,
   GET_FAVORITES,
   RESET,
+  USER_LOGEADO,
+  CLEAR_USER
 } from "./action-type";
 
 const initialState = {
@@ -38,6 +40,18 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         indexProductShow: action.payload,
       };
+    
+    case USER_LOGEADO: 
+    return {
+      ...state,
+      user: action.payload
+    }
+
+    case CLEAR_USER:
+      return {
+        ...state,
+        user: {}
+      }
     
     case GET_BY_ID: 
     return {

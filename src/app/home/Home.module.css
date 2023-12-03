@@ -3,7 +3,7 @@
     align-content: center;
     text-align: center;
     justify-content: center;
-    background-color: rgb(196, 196, 196);
+    background-color: #3d3d3d;
   }
 
   
@@ -24,6 +24,7 @@
     max-width: 3rem; /* Cambia a un valor específico en píxeles en lugar de vh */
     height: 2.5rem; /* Cambia la altura a un valor específico en píxeles */
     margin-left: 48px;
+    margin-top: 1px;
   }
   
   .button:hover {
@@ -56,6 +57,7 @@
     transition: all 0.2s ease-in-out 0ms;
     user-select: none;
     font-family: 'Poppins', sans-serif;
+    margin-top: 5px;
   }
   
   .active-filter:hover {

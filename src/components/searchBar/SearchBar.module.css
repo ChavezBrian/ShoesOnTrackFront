@@ -16,7 +16,7 @@
 }
 
 .input[type="search"]:hover {
-  border-color: #d6b007; /* Cambia el color del borde al pasar el mouse por encima */
+  border-color: rgb(255 228 65); /* Cambia el color del borde al pasar el mouse por encima */
 }
 
 .button {
@@ -33,7 +33,7 @@
 }
 
 .button:hover {
-  background-color: rgb(219, 73, 6); /* Cambia el color de fondo al pasar el mouse por encima */
+  background-color: rgb(255 228 65); /* Cambia el color de fondo al pasar el mouse por encima */
 }
 
 .Lupa {
