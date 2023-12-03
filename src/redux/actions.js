@@ -17,8 +17,8 @@ import {
   SORT_PRICE,
   GET_FAVORITES,
   RESET,
-  USER_LOGEADO,
-  CLEAR_USER
+  GET_USER_PRODUCTS,
+  CREATE_SHOES
 } from "./action-type";
 
 const URL = 'https://deploy-back-wine.vercel.app';
@@ -250,3 +250,29 @@ export const deleteFavorite = (datos) => async () => {
     console.error(error);
   }
 };
+
+
+export const getUserProducts = (idUser) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`/products/all?idUser=${idUser}`);
+      dispatch({ type: GET_USER_PRODUCTS, payload: data });
+  } catch (error) {
+     console.error(error);
+  }
+}
+}
+
+
+export const createShoe = (shoe) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.post("/products", shoe);
+      return dispatch({ type: CREATE_SHOES, payload: data });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+      
+

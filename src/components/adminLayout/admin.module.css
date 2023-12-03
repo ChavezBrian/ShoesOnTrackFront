@@ -1,0 +1,43 @@
+.contenedor {
+    width: 100vw; /* Ancho de la barra lateral */
+    background-color: #f0f0f0; /* Color de fondo */
+    padding: 20px;
+    display: flex; /* Para permitir la distribución vertical de los elementos */
+    justify-content: flex-start; /* Alineación vertical */
+    gap: 10px;
+    justify-content: center;
+}
+
+/* Estilos para cada ítem de la barra lateral */
+.punto {
+    margin-bottom: 10px; /* Espacio entre ítems */
+}
+
+/* Estilos para los enlaces */
+.punto a {
+    text-decoration: none;
+    padding: 8px 12px; /* Espaciado alrededor del texto */
+    border: 1px solid #ccc; /* Borde para separar visualmente los enlaces */
+    border-radius: 4px; /* Borde redondeado */
+    margin: 0 5px; /* Espacio horizontal entre los enlaces */
+    transition: background-color 0.3s ease; /* Efecto de transición */
+}
+
+/* Estilos para los enlaces cuando se pasan por encima */
+.punto a:hover {
+    background-color: #f0f0f0; /* Cambio de color al pasar el ratón */
+}
+
+.lista{
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+}
+
+.item{
+    display: flex;
+    justify-content: space-between; /* Espacio entre los elementos */
+    max-width: 500px; /* Ancho máximo para evitar que se extiendan demasiado */
+    width: 100%; /* Ancho máximo */
+}
+
