@@ -1,6 +1,6 @@
 export const validateName = (name) => {
-    if (name.length < 3 || name.length > 20) {
-      return "Name must be between 3 and 20 characters.";
+    if (name.length < 3 || name.length > 30) {
+      return "Name must be between 3 and 30 characters.";
     } else if (!/^[a-zA-Z]+$/.test(name)) {
       return "Name must contain only letters.";
     } else {
