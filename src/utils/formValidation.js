@@ -1,12 +1,12 @@
 export const validateName = (name) => {
-    if (name.length < 3 || name.length > 30) {
-      return "Name must be between 3 and 30 characters.";
-    } else if (!/^[a-zA-Z]+$/.test(name)) {
-      return "Name must contain only letters.";
-    } else {
-      return "";
-    }
-  };
+  if (name.length < 3 || name.length > 30) {
+    return "Name must be between 3 and 30 characters.";
+  } else if (!/^[a-zA-Z ]+$/.test(name)) {
+    return "Name must contain only letters and spaces.";
+  } else {
+    return "";
+  }
+};
 
   export const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
