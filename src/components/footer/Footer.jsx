@@ -17,12 +17,6 @@ const Footer = () => {
     <>
       <footer className={style.footer}>
         <div className={style.social_media}>
-          Logo
-          <img src="" alt="" />
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil,
-            necessitatibus?
-          </p>
           <div>
             <ul className={style.ul}>
               <li className={style.li}>
@@ -56,11 +50,6 @@ const Footer = () => {
         <div className={style.about}>
           <p className={style.tittle}>Sobre nosotros</p>
           <ul className={style.ul}>
-            <li>
-              <Link href={"#"} to={""} className={style.link}>
-                Sobre Nosotros
-              </Link>{" "}
-            </li>
             <li>
               <Link href={"#"} to={""} className={style.link}>
                 Nuestra Tienda
@@ -131,11 +120,10 @@ const Footer = () => {
         <div>
           <p className={style.tittle}>Obten nuestra App</p>
           <ul className={style.ul}>
-            
-            <Image src={google} width={125} height={45} alt="google"/>
+            <Image src={google} width={125} height={45} alt="google" />
 
             <br />
-            <Image src={appStore} width={125} height={45} alt="app"/>
+            <Image src={appStore} width={125} height={45} alt="app" />
           </ul>
         </div>
       </footer>

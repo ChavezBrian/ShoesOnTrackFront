@@ -1,41 +1,44 @@
 "use client";
 import Link from "next/link";
+import style from "./shoe.module.css";
+import { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteShoe } from "@/redux/actions";
 
-const shoe = ({ shoe }) => {
-    return (
-      <div >
-        <div >
-        <div >
-          <h2>SHOE</h2>
-          <img
-            src={shoe.image}
-            alt={shoe.name}
-          />
-          <h2 >{shoe.name}</h2>
-          <div >
-            <div>
-              <Link href={`/admin/modify-shoe/${shoe.id}`}>
-                <button>
-                  
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
-                    />
-                </button>
-              </Link>
+const Shoe = ({ id, name, brandName, description, price, color, image }) => {
+  const dispatch = useDispatch();
 
-              <button
-                onClick={() => handleChange(shoe.id)}
-              >
-                {statusEvent === "active" ? "Active" : "Inactive"}
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
-    );
+  const handleDelete = async () => {
+    try {
+      await dispatch(deleteShoe(id));
+      // Si el dispatch de la acción se completa sin errores, significa que el zapato se eliminó correctamente
+      toast.success("Successfully deleted shoe!")
+    } catch (error) {
+      toast.error(`Ups!${error}`) // Muestra el mensaje de error obtenido
+    }
   };
-  
-  export default shoe;
+
+  return (
+    <div className={style.container}>
+      <div><Toaster/></div>
+      {/* <div className={style.brand}>{brandName}</div> */}
+      <div className={style.containerImg}>
+        <img src={image} alt={name}></img>
+      </div>
+      <div className={style.details}>
+        <span className={style.brandtitle}>{brandName}</span>
+        <h4 className={style.name}>{name}</h4>
+      </div>
+      <div className={style.price}>{price}</div>
+      <div>
+        <button onClick={handleDelete}>DELETE</button>
+        <Link href={`/admin/modify-shoe/${id}`}>
+          <button>MODIFY</button>
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+export default Shoe;

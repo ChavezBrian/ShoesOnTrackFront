@@ -5,13 +5,13 @@
   flex-wrap: wrap;
   gap: 25px;
   padding: 50px;
-  background-color: #fff;
+  background-color: black;
+  color: aliceblue;
 }
 
 .social_media {
   max-width: 25%;
-  background-color: #fff;
-
+  background: inherit;
 }
 
 .social_media .ul {
@@ -22,8 +22,6 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  background-color: #fff;
-
 }
 
 .social_media .social_link {
@@ -51,7 +49,7 @@
 
 .tittle {
   font-size: 1.1em;
-  color: black;
+  font-weight: bolder;
 }
 
 .about .ul,
@@ -69,7 +67,7 @@
 
 .link {
   text-decoration: none;
-  color: var(--primary);
+  color: aliceblue;
 }
 
 .app_links img {

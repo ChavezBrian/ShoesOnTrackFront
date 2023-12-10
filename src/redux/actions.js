@@ -18,11 +18,86 @@ import {
   GET_FAVORITES,
   RESET,
   GET_USER_PRODUCTS,
-  CREATE_SHOES
+  CREATE_SHOES,
+  USER_LOGEADO,
+  CLEAR_USER,
+  CHANGE_SHOE,
+  DELETE_SHOE,
+  GET_ALL_CARTS,
+  GET_ALL_FAVS,
+  NEW_CART,
+  NEW_FAVORITE,
+  REMOVE_CART_BACK,
+  REMOVE_FAV_BACK,
+  SEND_EMAIL_SUCCESS,
+  SEND_EMAIL_REQUEST,
+  SEND_EMAIL_FAILURE,
 } from "./action-type";
+import { data } from "autoprefixer";
 
 const URL = 'https://deploy-back-wine.vercel.app';
 
+export function getAllFavs(id) {
+  console.log('me despacharon');
+  
+  return async function (dispatch) {
+    const response = await axios.get(`${URL}/favs/${id}`);
+    dispatch({
+      type: GET_ALL_FAVS,
+      payload: response.data,
+    });
+  };
+}
+
+export function AddFavoriteBack(objectId) {
+  return async function (dispatch) {
+    const response = await axios.post(`${URL}/favs`, objectId);
+    dispatch({
+      type: NEW_FAVORITE,
+      payload: response.data,
+    });
+  };
+}
+
+export function removeFavoriteBack(objectId) {
+  return async function (dispatch) {
+    const response = await axios.put(`${URL}/favs`, objectId);
+    dispatch({
+      type: REMOVE_FAV_BACK,
+      payload: response.data,
+    });
+  };
+}
+
+export function getAllCarts(id) {
+  return async function (dispatch) {
+    const response = await axios.get(`${URL}/cart/${id}`);
+    dispatch({
+      type: GET_ALL_CARTS,
+      payload: response.data,
+    });
+  };
+}
+
+export function AddCartBack(objectId) {
+  return async function (dispatch) {
+    const response = await axios.post(`${URL}/cart`, objectId);
+    dispatch({
+      type: NEW_CART,
+      payload: response.data,
+    });
+  };
+}
+
+export function removeCartBack(objectId) {
+  return async function (dispatch) {
+    const response = await axios.put(`${URL}/cart`, objectId);
+    dispatch({
+      type: REMOVE_CART_BACK,
+      payload: response.data,
+    });
+  };
+}
 
 export const showLoader = () => {
   return {
@@ -252,10 +327,10 @@ export const deleteFavorite = (datos) => async () => {
 };
 
 
-export const getUserProducts = (idUser) => {
+export const getUserProducts = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`/products/all?idUser=${idUser}`);
+      const { data } = await axios.get(`/products/all`);
       dispatch({ type: GET_USER_PRODUCTS, payload: data });
   } catch (error) {
      console.error(error);
@@ -271,6 +346,50 @@ export const createShoe = (shoe) => {
       return dispatch({ type: CREATE_SHOES, payload: data });
     } catch (error) {
       console.error(error);
+    }
+  };
+};
+
+export const updateShoe = (shoe) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.put(`/products/change`, shoe);
+      return dispatch({ type: CHANGE_SHOE, payload: data });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
+
+export const deleteShoe = (id) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.delete(`/products/${id}`);
+      dispatch({ type: DELETE_SHOE, payload: data });
+    } catch (error) {
+      console.error(error);
+      dispatch({ type: DELETE_SHOE, payload: error.message }); // Ejemplo: acción de error
+    }
+  };
+};
+
+export const sendEmail = (formData) => {
+  return async (dispatch) => {
+    dispatch({ type: SEND_EMAIL_REQUEST });
+
+    try {
+      console.log("FormData in sendEmail action:", formData);
+      const response = await axios.post(`/contact/send`, formData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      dispatch({ type: SEND_EMAIL_SUCCESS, payload: response.data });
+    } catch (error) {
+      console.error('Error en el envío del formulario de contacto:', error);
+      dispatch({ type: SEND_EMAIL_FAILURE, payload: error.message });
     }
   };
 };

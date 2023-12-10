@@ -7,13 +7,15 @@ import Login from "@/app/api/auth/loginButton";
 import Logout from "@/app/api/auth/logoutButton";
 import styles from "./login.module.css";
 import { userRegister } from "@/redux/actions";
+import Image from "next/image";
 
 const LoginAuth = () => {
   const { user, isLoading } = useUser();
   const [registrationRequested, setRegistrationRequested] = useState(false);
-  const [showEmailVerificationAlert, setShowEmailVerificationAlert] = useState(false);
+  const [showEmailVerificationAlert, setShowEmailVerificationAlert] =
+    useState(false);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,7 +29,6 @@ const LoginAuth = () => {
             email_verified: user.email_verified,
           };
           dispatch(userRegister(userData));
-          
         }
       }
     };
@@ -47,12 +48,26 @@ const LoginAuth = () => {
         {isLoading ? (
           <div>Cargando...</div>
         ) : user ? (
-          <div className="flex items-center">
-            {user.picture && <img src={user.picture} alt={user.name} className={styles.profileImage} />}
+          <div className={styles.userCont}>
             <div>
-              {user.name && <span className={styles.profileName}>{user.name}</span>}
-              {user ? <Logout className={styles.logoutButton} /> : <Login className={styles.loginButton} />}
+              {/* {user.name && (
+                  <span className={styles.profileName}>{user.name}</span>
+                )} */}
+              {user ? (
+                <Logout className={styles.logoutButton} />
+              ) : (
+                <Login className={styles.loginButton} />
+              )}
             </div>
+            {user.picture && (
+              <Image
+                src={user.picture}
+                width={60}
+                height={60}
+                alt={user.name}
+                className={styles.profileImage}
+              />
+            )}
           </div>
         ) : (
           <div>
@@ -63,7 +78,8 @@ const LoginAuth = () => {
 
       {showEmailVerificationAlert && (
         <div className={styles.alertContainer}>
-          Tu correo electrónico no ha sido verificado. Por favor, verifica tu correo electrónico para continuar.
+          Tu correo electrónico no ha sido verificado. Por favor, verifica tu
+          correo electrónico para continuar.
           <a href="/api/auth/logout" className={styles.alertButton}>
             Aceptar
           </a>

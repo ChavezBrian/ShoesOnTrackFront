@@ -2,17 +2,27 @@
 
 import Shoe from "./shoe";
 import style from "../dashboard/shoe.module.css"
+import React, { useState, useEffect } from "react";
+
 
 
 const ShoeList = ({ shoes }) => {
+
+
     return (
-      <div className={style.allshoes} >
-        <div>
-        <h2>Shoes</h2>
-        </div>
-        {/* {shoes.map((shoe) => (
-          <Shoe key={shoe.id} shoe={shoe} />
-        ))} */}
+      <div className={style.todo} >
+        {shoes.map((shoe) => (
+          <Shoe
+            key={shoe.id}
+            id={shoe.id}
+            name={shoe.name}
+            brandName={shoe.brandName}
+            price={`$${shoe.price}`}
+            image={shoe.image}
+            stock={shoe.stock}
+            color={shoe.color}
+            status={shoe.status} />
+        ))}
       </div>
     );
   };

@@ -4,9 +4,10 @@ import Navbar from "@/components/navbar/Navbar";
 
 
 const AdminLayout = ({ children }) => {
+  const admin = {isAdmin:true}
     return (
       <div>
-        <Navbar />
+        {/* <Navbar user={admin}/> */}
         <AdminSidebar/>
         <div >
           <main >

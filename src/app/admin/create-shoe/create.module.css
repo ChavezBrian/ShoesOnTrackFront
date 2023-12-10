@@ -1,16 +1,86 @@
-
-
-.conte{
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    align-items: center; 
-    width: 100vw;
-    height: 100vh; 
-    background-color: #f5f2cc;
+.conte {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-bottom: 50px; /* Espacio entre el formulario y los botones */
 }
 
-.forcreate{
-    width: 80%; 
-    max-width: 400px;
+.forcreate {
+  background-color: #d4d0d0;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.forcreate h2 {
+  color: #333;
+  text-align: center;
+}
+
+.forcreate h4 {
+  color: red;
+}
+
+.forcreate label {
+  display: block;
+  margin-bottom: 2px; /* Valor reducido */
+}
+
+.forcreate input,
+.forcreate select {
+  width: 100%;
+  padding: 6px; /* Valor reducido */
+  margin-bottom: 6px; /* Valor reducido */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.forcreate span {
+  color: red;
+  font-size: 15px; /* Valor reducido */
+  margin-bottom: 2px; /* Valor reducido */
+  display: block;
+}
+
+.forcreate .button-container {
+  text-align: center; /* Centra los botones */
+}
+
+/* Estilos para los botones y enlaces en estado hover */
+.forcreate button:hover,
+.forcreate a:hover {
+  background-color: #217dbb; /* Cambia el color al pasar el ratón */
+  text-decoration: none;
+}
+
+.forcreate button,
+.forcreate a {
+  background-color: #3498db;
+  color: #fff;
+  padding: 8px 16px; /* Valor reducido */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px; /* Valor reducido */
+  margin-right: 8px; /* Espacio entre botones */
+  text-decoration: none;
+}
+
+.forcreate button:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
+
+.checkboxContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.checkboxOption {
+  margin-right: 20px; /* Espacio entre las opciones */
+}
+
+.buttonContainer {
+  text-align: center;
+  margin-top: 10px; /* Espacio entre el formulario y los botones */
 }

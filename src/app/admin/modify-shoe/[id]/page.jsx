@@ -1,22 +1,24 @@
 "use client";
 
-import validateForm from "@/utils/validate";
-import { Toaster } from "react-hot-toast";
-import toast from "react-hot-toast";
-import style from "../create-shoe/create.module.css";
+import validateModify from "@/utils/validationsModify";
+import style from "./modify.module.css";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
+import { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-import { createShoe, getAllCategories } from "@/redux/actions";
+import { updateShoe } from "@/redux/actions";
+import { useParams } from "next/navigation";
 
-const CreateShoes = () => {
+const ModifyShoe = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const { id } = useParams();
 
   const [inputDisabled, setInputDisabled] = useState(false);
 
   const medidas = [
-    19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48
+    19,20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48
   ];
 
   const categories = [
@@ -30,60 +32,30 @@ const CreateShoes = () => {
     "BOTINES",
   ];
 
-  const shoeBrands = [
-    "Nike",
-    "Adidas",
-    "Puma",
-    "Reebok",
-    "New Balance",
-    "Converse",
-    "Vans",
-  ];
-
   const [shoe, setShoe] = useState({
+    id: id,
     name: "",
-    brandName: "",
+    // brandName: "",
     price: "",
     description: "",
     image: "",
     category: "",
-    color: "",
+    // color: "",
     stock: "",
-    details: [],
+    // details: [],
     sizes: [],
-    user: "",
+    // user: "",
   });
 
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState({});
 
-  const updateForm = (fieldName, value) => {
-    setShoe((prevShoe) => ({
-      ...prevShoe,
-      [fieldName]: value,
-    }));
-  };
-
-  const handleBrandNameSelectChange = (e) => {
-    const { name, value } = e.target;
-    updateForm(name, value);
-
-    const updatedErrors = { ...errors };
-    if (name === "brandName" && value !== "") {
-      setInputDisabled(true);
-      delete updatedErrors[name];
-    } else {
-      setInputDisabled(false);
-      updatedErrors[name] = "Brand name is required";
-    }
-
-    setErrors(updatedErrors);
-  };
-
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
 
+    // Validar que se haya seleccionado un archivo
     if (file) {
+      // Puedes realizar más validaciones aquí, si es necesario
       const reader = new FileReader();
 
       reader.onloadend = () => {
@@ -96,138 +68,107 @@ const CreateShoes = () => {
     }
   };
 
-  const handleBrandNameInputChange = (e) => {
-    const { name, value } = e.target;
-    updateForm(name, value);
-
-    const updatedErrors = { ...errors };
-    if (name === "brandName") {
-      if (value.trim() === "") {
-        updatedErrors[name] = "Brand name is required";
-      } else {
-        delete updatedErrors[name];
-      }
-    }
-
-    setErrors(updatedErrors);
-  };
-
-
   const handleSelectChange = (e) => {
     const { name, value } = e.target;
-    updateForm(name, value);
+    const updatedShoe = { ...shoe };
+    let updatedErrors = { ...errors };
 
-    const updatedErrors = { ...errors };
+    updatedShoe[name] = value;
+
     if (name === "category" && value !== "") {
       setInputDisabled(true);
-      delete updatedErrors[name];
+      delete updatedErrors[name]; // Limpiar el error si se selecciona una categoría
     } else {
       setInputDisabled(false);
-      updatedErrors[name] = "Category is required";
+      updatedErrors[name] = "Category is required"; // Mostrar error si no se selecciona una categoría
     }
 
+    setShoe(updatedShoe);
     setErrors(updatedErrors);
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    updateForm(name, value);
+    const updatedShoe = { ...shoe };
+    let updatedErrors = { ...errors };
 
-    const updatedErrors = { ...errors };
+    updatedShoe[name] = value;
+
     if (name === "category") {
+      // Validación para los detalles
       if (value.trim() === "") {
         updatedErrors[name] = "Category is required";
       } else {
-        delete updatedErrors[name];
+        delete updatedErrors[name]; // Limpiar el error si los detalles se ingresan correctamente
       }
+    } else {
+      // Aquí podrías agregar más validaciones para otros campos si es necesario
     }
 
+    setShoe(updatedShoe);
     setErrors(updatedErrors);
   };
 
   const handleChange = (e) => {
     let updatedShoe = { ...shoe };
-  
-    if (e.target.name === "category" && e.target.value !== "") {
-      setInputDisabled(true);
-    } else {
-      setInputDisabled(false);
-    }
-  
+
     if (e.target.type === "checkbox" && e.target.name === "sizes") {
       const size = e.target.value;
       const isChecked = e.target.checked;
-  
+
       if (isChecked && !updatedShoe.sizes.includes(size)) {
         updatedShoe.sizes.push(size);
       } else if (!isChecked && updatedShoe.sizes.includes(size)) {
         updatedShoe.sizes = updatedShoe.sizes.filter((item) => item !== size);
       }
-    } else if (e.target.name === "details") {
-      updatedShoe.details = [e.target.value];
-    } else if (e.target.name === "image") {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-  
-        reader.onloadend = () => {
-          updatedShoe.image = reader.result;
-          setShoe(updatedShoe);
-          setErrors((prevErrors) => ({ ...prevErrors, image: "" }));
-        };
-  
-        reader.readAsDataURL(file);
-      }
     } else {
       updatedShoe[e.target.name] = e.target.value;
     }
-  
+
     setShoe(updatedShoe);
-    setErrors(validateForm(updatedShoe));
+    setErrors(validateModify(updatedShoe));
   };
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formErrors = validateForm(shoe);
+    const formErrors = validateModify(shoe);
     setErrors(formErrors);
   
     if (Object.keys(formErrors).length === 0) {
       try {
-        const response = await dispatch(createShoe(shoe));
+        const response = await dispatch(updateShoe(shoe));
   
         if (!response.error) {
           // Mostrar alerta cuando se crea exitosamente un "shoe"
-          toast.success("Successfully created shoe!");
+          toast.success("Successfully shoe modify!");
   
           // Resetear el estado del formulario después de un envío exitoso
-          setShoe((prevShoe) => ({
-            ...prevShoe,
+          setShoe({
+            id: "",
             name: "",
-            brandName: "",
             price: "",
             description: "",
             image: "",
             category: "",
-            color: "",
             stock: "",
-            details: [],
             sizes: [],
-            user: user?.id,
-          }));
+          });
   
-          // Recargar la página después de un envío exitoso
+          // Recargar la página después de 1.5 segundos
           setTimeout(() => {
             window.location.reload();
           }, 1500);
         } else {
-          toast.error(`Ups! Hubo un problema`);
+          toast.error(`Ups! ${response.error.message || 'Error desconocido'}`);
+          setTimeout(() => setMessage(""), 5000);
         }
       } catch (error) {
-        toast.error(`Ups! Hubo un problema`);
+        toast.error(`Ups! Hubo un problema: ${error.message || 'Error desconocido'}`);
+        setTimeout(() => setMessage(""), 5000);
       }
     }
   };
+  
 
   const handleDisabled = () => {
     for (let error in errors) {
@@ -237,24 +178,28 @@ const CreateShoes = () => {
   };
 
   useEffect(() => {
-    if (user && user.id && !shoe.user) {
-      setShoe((shoe) => ({
-        ...shoe,
-        user: user.id,
+    if (id && !shoe.id) {
+      setShoe(prevShoe => ({
+        ...prevShoe,
+        id: id,
       }));
     }
-  }, [user, shoe.user]);
+  }, [id]); // solo ejecutar cuando id cambia
+  
 
-  console.log(shoe);
+  //   useEffect(() => {
+  //     dispatch(getProductsname(name))
+  //   }, [name]);
+
+    console.log(id);
+    console.log(shoe)
 
   return (
     <div className={style.conte}>
-      <div>
-        <Toaster />
-      </div>
+      <div><Toaster/></div>
       <form className={style.forcreate} onSubmit={handleSubmit}>
         <h4>User: {user.email}</h4>
-        <h2>ENTER SHOE DATA</h2>
+        <h2>MODIFY YOUR SHOE</h2>
         <div className="mb-4">
           <label>Name:</label>
           <input
@@ -265,30 +210,6 @@ const CreateShoes = () => {
             onChange={handleChange}
           />
           <span>{errors.name}</span>
-          <br />
-          <label>Brand Name:</label>
-          <select
-            name="brandName"
-            value={shoe.brandName}
-            onChange={handleBrandNameSelectChange}
-          >
-            <option value="">Select Brand</option>
-            {shoeBrands.map((brand, index) => (
-              <option key={index} value={brand}>
-                {brand}
-              </option>
-            ))}
-          </select>
-          <label>Create New Brand Name:</label>
-          <input
-            name="brandName"
-            placeholder="Enter a New Brand"
-            type="text"
-            value={shoe.brandName}
-            onChange={handleBrandNameInputChange}
-            disabled={inputDisabled}
-          />
-          <span>{errors.brandName}</span>
           <br />
           <label>Price:</label>
           <input
@@ -301,13 +222,14 @@ const CreateShoes = () => {
           <span>{errors.price}</span>
           <br />
           <label>Image:</label>
-          <input
-            type="file"
-            name="image"
-            accept="image/*"
-            onChange={handleImageUpload}
-          />
-          <span>{errors.image}</span>
+        <input
+          type="file"
+          name="image"
+          accept="image/*"
+          onChange={handleImageUpload}
+        />
+        <span>{errors.image}</span>
+
           <br />
 
           <label>Shoe Category:</label>
@@ -346,28 +268,6 @@ const CreateShoes = () => {
           />
           <span>{errors.stock}</span>
           <br />
-
-          <label>Color:</label>
-          <input
-            name="color"
-            placeholder="Enter Colors..."
-            type="text"
-            value={shoe.color}
-            onChange={handleChange}
-          />
-          <span>{errors.color}</span>
-          <br />
-          <label>Details:</label>
-          <input
-            name="details"
-            placeholder="Enter details..."
-            type="text"
-            value={shoe.details}
-            onChange={handleChange}
-          />
-          <span>{errors.details}</span>
-
-          <br />
           <div>
             <label>Select the sizes of your shoe:</label>
             <br />
@@ -389,7 +289,6 @@ const CreateShoes = () => {
               ) : (
                 <p>Loading...</p>
               )}
-              <br />
             </div>
           </div>
           <br />
@@ -426,4 +325,4 @@ const CreateShoes = () => {
   );
 };
 
-export default CreateShoes;
+export default ModifyShoe;

@@ -4,15 +4,12 @@
   justify-content: center;
   flex-direction: column;
   height: 190px;
-  background-color: #EFF2F4;
+  background-color: black;
+  color: aliceblue;
 }
 
 .h3 {
   font-size: 1.3em;
-}
-
-.p {
-  color: #606060;
 }
 
 .form {

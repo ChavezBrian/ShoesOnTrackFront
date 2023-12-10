@@ -1,23 +1,23 @@
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 
-import { useDispatch } from 'react-redux';
-import { clearUser } from '@/redux/actions';
+import { useDispatch } from "react-redux";
+import { clearUser } from "@/redux/actions";
 
-import style from "./style.module.css"
-
+import style from "./style.module.css";
 
 const Logout = () => {
   const router = useRouter();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleLogout = () => {
-    
-    router.push('/api/auth/logout');
+    router.push("/api/auth/logout");
     dispatch(clearUser());
   };
 
   return (
-    <button className={style.buttonout} onClick={handleLogout}>Logout</button>
+    <button className={style.logButton} onClick={handleLogout}>
+      Logout
+    </button>
   );
 };
 
