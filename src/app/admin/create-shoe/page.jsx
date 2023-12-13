@@ -12,11 +12,17 @@ import { createShoe, getAllCategories } from "@/redux/actions";
 const CreateShoes = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-
+  const [isClient, setIsClient] = useState(false);
   const [inputDisabled, setInputDisabled] = useState(false);
 
+  useEffect(() => {
+    if (!user?.isAdmin) window.location.href = "/";
+    else setIsClient(true);
+  }, [user]);
+
   const medidas = [
-    19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48
+    19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37,
+    38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48,
   ];
 
   const categories = [
@@ -112,7 +118,6 @@ const CreateShoes = () => {
     setErrors(updatedErrors);
   };
 
-
   const handleSelectChange = (e) => {
     const { name, value } = e.target;
     updateForm(name, value);
@@ -147,17 +152,17 @@ const CreateShoes = () => {
 
   const handleChange = (e) => {
     let updatedShoe = { ...shoe };
-  
+
     if (e.target.name === "category" && e.target.value !== "") {
       setInputDisabled(true);
     } else {
       setInputDisabled(false);
     }
-  
+
     if (e.target.type === "checkbox" && e.target.name === "sizes") {
       const size = e.target.value;
       const isChecked = e.target.checked;
-  
+
       if (isChecked && !updatedShoe.sizes.includes(size)) {
         updatedShoe.sizes.push(size);
       } else if (!isChecked && updatedShoe.sizes.includes(size)) {
@@ -169,37 +174,36 @@ const CreateShoes = () => {
       const file = e.target.files[0];
       if (file) {
         const reader = new FileReader();
-  
+
         reader.onloadend = () => {
           updatedShoe.image = reader.result;
           setShoe(updatedShoe);
           setErrors((prevErrors) => ({ ...prevErrors, image: "" }));
         };
-  
+
         reader.readAsDataURL(file);
       }
     } else {
       updatedShoe[e.target.name] = e.target.value;
     }
-  
+
     setShoe(updatedShoe);
     setErrors(validateForm(updatedShoe));
   };
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formErrors = validateForm(shoe);
     setErrors(formErrors);
-  
+
     if (Object.keys(formErrors).length === 0) {
       try {
         const response = await dispatch(createShoe(shoe));
-  
+
         if (!response.error) {
           // Mostrar alerta cuando se crea exitosamente un "shoe"
           toast.success("Successfully created shoe!");
-  
+
           // Resetear el estado del formulario después de un envío exitoso
           setShoe((prevShoe) => ({
             ...prevShoe,
@@ -215,7 +219,7 @@ const CreateShoes = () => {
             sizes: [],
             user: user?.id,
           }));
-  
+
           // Recargar la página después de un envío exitoso
           setTimeout(() => {
             window.location.reload();
@@ -252,176 +256,178 @@ const CreateShoes = () => {
       <div>
         <Toaster />
       </div>
-      <form className={style.forcreate} onSubmit={handleSubmit}>
-        <h4>User: {user.email}</h4>
-        <h2>ENTER SHOE DATA</h2>
-        <div className="mb-4">
-          <label>Name:</label>
-          <input
-            name="name"
-            placeholder="Enter a name..."
-            type="name"
-            value={shoe.name}
-            onChange={handleChange}
-          />
-          <span>{errors.name}</span>
-          <br />
-          <label>Brand Name:</label>
-          <select
-            name="brandName"
-            value={shoe.brandName}
-            onChange={handleBrandNameSelectChange}
-          >
-            <option value="">Select Brand</option>
-            {shoeBrands.map((brand, index) => (
-              <option key={index} value={brand}>
-                {brand}
-              </option>
-            ))}
-          </select>
-          <label>Create New Brand Name:</label>
-          <input
-            name="brandName"
-            placeholder="Enter a New Brand"
-            type="text"
-            value={shoe.brandName}
-            onChange={handleBrandNameInputChange}
-            disabled={inputDisabled}
-          />
-          <span>{errors.brandName}</span>
-          <br />
-          <label>Price:</label>
-          <input
-            name="price"
-            placeholder="Enter a Price"
-            type="price"
-            value={shoe.price}
-            onChange={handleChange}
-          />
-          <span>{errors.price}</span>
-          <br />
-          <label>Image:</label>
-          <input
-            type="file"
-            name="image"
-            accept="image/*"
-            onChange={handleImageUpload}
-          />
-          <span>{errors.image}</span>
-          <br />
-
-          <label>Shoe Category:</label>
-          <select
-            name="category"
-            onChange={handleSelectChange}
-            value={shoe.category}
-          >
-            <option value="">Select Shoe Category</option>
-            {categories?.map((option, index) => (
-              <option key={index} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-          <br />
-
-          <label>Create New Category:</label>
-          <input
-            name="category"
-            placeholder="Enter new category..."
-            type="text"
-            value={shoe.category}
-            onChange={handleInputChange}
-            disabled={inputDisabled}
-          />
-          <span>{errors.category}</span>
-          <br />
-          <label>Stock:</label>
-          <input
-            name="stock"
-            placeholder="Enter stock..."
-            type="text"
-            value={shoe.stock}
-            onChange={handleChange}
-          />
-          <span>{errors.stock}</span>
-          <br />
-
-          <label>Color:</label>
-          <input
-            name="color"
-            placeholder="Enter Colors..."
-            type="text"
-            value={shoe.color}
-            onChange={handleChange}
-          />
-          <span>{errors.color}</span>
-          <br />
-          <label>Details:</label>
-          <input
-            name="details"
-            placeholder="Enter details..."
-            type="text"
-            value={shoe.details}
-            onChange={handleChange}
-          />
-          <span>{errors.details}</span>
-
-          <br />
-          <div>
-            <label>Select the sizes of your shoe:</label>
+      {isClient && (
+        <form className={style.forcreate} onSubmit={handleSubmit}>
+          <h4>User: {user.email}</h4>
+          <h2>ENTER SHOE DATA</h2>
+          <div className="mb-4">
+            <label>Name:</label>
+            <input
+              name="name"
+              placeholder="Enter a name..."
+              type="name"
+              value={shoe.name}
+              onChange={handleChange}
+            />
+            <span>{errors.name}</span>
             <br />
-            <span>{errors.sizes}</span>
-            <div className={style.checkboxContainer}>
-              {Array.isArray(medidas) && medidas.length > 0 ? (
-                medidas.map((med, index) => (
-                  <div key={index} className={style.checkboxOption}>
-                    <p htmlFor={`opcion${index}`}>{med}</p>
-                    <input
-                      type="checkbox"
-                      id={`opcion${index}`}
-                      name="sizes"
-                      value={med}
-                      onChange={handleChange}
-                    />
-                  </div>
-                ))
-              ) : (
-                <p>Loading...</p>
-              )}
+            <label>Brand Name:</label>
+            <select
+              name="brandName"
+              value={shoe.brandName}
+              onChange={handleBrandNameSelectChange}
+            >
+              <option value="">Select Brand</option>
+              {shoeBrands.map((brand, index) => (
+                <option key={index} value={brand}>
+                  {brand}
+                </option>
+              ))}
+            </select>
+            <label>Create New Brand Name:</label>
+            <input
+              name="brandName"
+              placeholder="Enter a New Brand"
+              type="text"
+              value={shoe.brandName}
+              onChange={handleBrandNameInputChange}
+              disabled={inputDisabled}
+            />
+            <span>{errors.brandName}</span>
+            <br />
+            <label>Price:</label>
+            <input
+              name="price"
+              placeholder="Enter a Price"
+              type="price"
+              value={shoe.price}
+              onChange={handleChange}
+            />
+            <span>{errors.price}</span>
+            <br />
+            <label>Image:</label>
+            <input
+              type="file"
+              name="image"
+              accept="image/*"
+              onChange={handleImageUpload}
+            />
+            <span>{errors.image}</span>
+            <br />
+
+            <label>Shoe Category:</label>
+            <select
+              name="category"
+              onChange={handleSelectChange}
+              value={shoe.category}
+            >
+              <option value="">Select Shoe Category</option>
+              {categories?.map((option, index) => (
+                <option key={index} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+            <br />
+
+            <label>Create New Category:</label>
+            <input
+              name="category"
+              placeholder="Enter new category..."
+              type="text"
+              value={shoe.category}
+              onChange={handleInputChange}
+              disabled={inputDisabled}
+            />
+            <span>{errors.category}</span>
+            <br />
+            <label>Stock:</label>
+            <input
+              name="stock"
+              placeholder="Enter stock..."
+              type="text"
+              value={shoe.stock}
+              onChange={handleChange}
+            />
+            <span>{errors.stock}</span>
+            <br />
+
+            <label>Color:</label>
+            <input
+              name="color"
+              placeholder="Enter Colors..."
+              type="text"
+              value={shoe.color}
+              onChange={handleChange}
+            />
+            <span>{errors.color}</span>
+            <br />
+            <label>Details:</label>
+            <input
+              name="details"
+              placeholder="Enter details..."
+              type="text"
+              value={shoe.details}
+              onChange={handleChange}
+            />
+            <span>{errors.details}</span>
+
+            <br />
+            <div>
+              <label>Select the sizes of your shoe:</label>
               <br />
+              <span>{errors.sizes}</span>
+              <div className={style.checkboxContainer}>
+                {Array.isArray(medidas) && medidas.length > 0 ? (
+                  medidas.map((med, index) => (
+                    <div key={index} className={style.checkboxOption}>
+                      <p htmlFor={`opcion${index}`}>{med}</p>
+                      <input
+                        type="checkbox"
+                        id={`opcion${index}`}
+                        name="sizes"
+                        value={med}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  ))
+                ) : (
+                  <p>Loading...</p>
+                )}
+                <br />
+              </div>
+            </div>
+            <br />
+            <label>Description:</label>
+            <textarea
+              name="description"
+              placeholder="Enter a description..."
+              type="text"
+              value={shoe.description}
+              onChange={handleChange}
+              rows={4}
+              cols={55}
+            />
+            <span>{errors.description}</span>
+            <br />
+            {message && <span>{message}</span>}
+
+            <div className={`${style.buttonContainer} mb-4`}>
+              <Link legacyBehavior href="/admin">
+                <a className={style.cancelButton}>CANCEL</a>
+              </Link>
+
+              <button
+                disabled={handleDisabled()}
+                type="submit"
+                className={style.submitButton}
+              >
+                SUBMIT
+              </button>
             </div>
           </div>
-          <br />
-          <label>Description:</label>
-          <textarea
-            name="description"
-            placeholder="Enter a description..."
-            type="text"
-            value={shoe.description}
-            onChange={handleChange}
-            rows={4}
-            cols={55}
-          />
-          <span>{errors.description}</span>
-          <br />
-          {message && <span>{message}</span>}
-
-          <div className={`${style.buttonContainer} mb-4`}>
-            <Link legacyBehavior href="/admin">
-              <a className={style.cancelButton}>CANCEL</a>
-            </Link>
-
-            <button
-              disabled={handleDisabled()}
-              type="submit"
-              className={style.submitButton}
-            >
-              SUBMIT
-            </button>
-          </div>
-        </div>
-      </form>
+        </form>
+      )}
     </div>
   );
 };

@@ -18,14 +18,14 @@ const NavBar = ({
 }) => {
   const pathname = usePathname();
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log(user)
-  },[])
+  }, [])
 
   return (
     <nav className={style.nav}>
       <div className={style.imagen}>
-        <Link href={"/"}>
+        <Link href={"/"} passHref>
           <Image src={logo} width={160} height={120} alt="Search" />
         </Link>
       </div>
@@ -37,32 +37,38 @@ const NavBar = ({
       />
 
       {pathname !== "/" && (
-        <Link href={"/"} className={style.link}>
+        <Link href={"/"} className={style.link} passHref>
           <button className={style.button}>
             <span>Home</span>
           </button>
         </Link>
       )}
       {pathname !== "/contact" && (
-        <Link href={"/contact"} className={style.link}>
+        <Link href={"/contact"} className={style.link} passHref>
           <button className={style.button}>
             <span>Contact</span>
           </button>
         </Link>
       )}
       {pathname !== "/about" && (
-        <Link href={"/about"} className={style.link}>
+        <Link href={"/about"} className={style.link} passHref>
           <button className={style.button}>
             <span>About</span>
           </button>
         </Link>
       )}
 
-<Link href={"/admin"} className={style.link}>
-      {user?.isAdmin && <button className={style.button}>
-            <span>Admin</span>
-          </button>}
-        </Link> 
+      {/* {pathname !== "/favorites" && (<Link href={"/favorites"} className={style.link} passHref>
+        {user?.name && <button className={style.button}>
+          <span>Favorites</span>
+        </button>}
+      </Link>)} */}
+
+      <Link href={"/admin"} className={style.link} passHref>
+        {user?.isAdmin && <button className={style.button}>
+          <span>Admin</span>
+        </button>}
+      </Link>
 
       <LoginAuth />
     </nav>

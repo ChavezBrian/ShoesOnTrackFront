@@ -18,6 +18,7 @@ import {
   DELETE_SHOE,
   GET_ALL_CARTS,
   GET_ALL_FAVS,
+  GET_TESTIMONIALS,
   NEW_CART,
   NEW_FAVORITE,
   REMOVE_CART_BACK,
@@ -25,6 +26,9 @@ import {
   SEND_EMAIL_FAILURE,
   SEND_EMAIL_REQUEST,
   SEND_EMAIL_SUCCESS,
+  GET_ALL_REVIEWS,
+  POST_REVIEW,
+  DELETE_REVIEW
 } from "./action-type";
 
 const initialState = {
@@ -56,6 +60,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         indexProductShow: action.payload,
       };
+
+    case GET_ALL_REVIEWS:
+      return {
+        ...state,
+        reviews: action.payload 
+      }
 
     case GET_ALL_FAVS:
       return {
@@ -97,6 +107,12 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.payload
+      };
+
+    case GET_TESTIMONIALS:
+      return {
+        ...state,
+        reviews: action.payload,
       };
 
     case CLEAR_USER:

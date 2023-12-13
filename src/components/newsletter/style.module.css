@@ -8,31 +8,14 @@
   color: aliceblue;
 }
 
-.h3 {
-  font-size: 1.3em;
-}
-
-.form {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.input {
-  padding: 5px;
-  width: 300px;
-}
-
-.input:focus {
-  outline: none;
-  box-shadow: none;
-}
-
-.btn_submit {
-  margin-left: 5px;
-  color: white;
-  padding: 7px;
-  border: none;
-  border-radius: 5px;
-  background-color: var(--primary);
+.orangeButton {
+  width: 40vw; /* Ajusta el ancho del botón según lo necesario */
+  background: #ebac21; /* Cambia el color al tono de naranja deseado */
+  color: white; /* Cambia el color del texto para asegurarte de que sea legible */
+  border: none; /* Quita el borde si lo deseas */
+  padding: 10px 20px; /* Ajusta el padding para el tamaño del botón */
+  border-radius: 5px; /* Agrega bordes redondeados si lo deseas */
+  font-size: 18px; /* Ajusta el tamaño de la letra según lo necesites */
+  font-weight: bold;
+  cursor: pointer; /* Cambia el cursor a la forma de una mano */
 }

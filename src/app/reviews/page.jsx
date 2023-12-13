@@ -1,5 +1,5 @@
 "use client";
-import HomePage from "./home/home";
+import Reviews from "@/components/reviews/reviews";
 import { Provider } from "react-redux";
 import store from "@/redux/store";
 
@@ -7,7 +7,7 @@ const LoginPage = () => {
   return (
     <div>
       <Provider store={store}>
-        <HomePage />
+        <Reviews />
       </Provider>
     </div>
   );

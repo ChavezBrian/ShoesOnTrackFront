@@ -1,0 +1,9 @@
+.container {
+    background-color: #ffffff;
+    width: 100%;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Utiliza repeat para especificar 5 columnas iguales */
+    grid-gap: 30px;
+    align-items: center;
+}

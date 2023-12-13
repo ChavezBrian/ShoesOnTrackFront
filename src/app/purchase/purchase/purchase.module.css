@@ -1,0 +1,55 @@
+/* purchase.module.css */
+
+.purchase-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra el contenido horizontalmente */
+    justify-content: center; /* Centra el contenido verticalmente */
+    text-align: center;
+    padding: 30px;
+    background-color: #000;
+    border: 4px solid #ffc107;
+    border-radius: 10px;
+    max-width: 500px;
+    margin: 30px auto 0;
+    height: 80vh;
+  }
+  
+  .logo {
+    max-width: 50%;
+    height: auto;
+    margin-bottom: 40px;
+    
+  }
+  
+  .purchase-success {
+    color: #28a745;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .purchase-message {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 30px;
+  }
+  
+  .home-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ffc107;
+    color: #000;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 4px;
+  }
+
+  .home-link:hover {
+    background-color: #ffa000; /* Cambia el color al pasar el cursor */
+  }
+  
+  .confirmation-message {
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 20px;
+  }

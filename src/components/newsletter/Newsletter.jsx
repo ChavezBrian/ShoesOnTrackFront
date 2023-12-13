@@ -1,19 +1,19 @@
-import React from 'react'
-import style from './style.module.css'
+import React from "react";
+import style from "./style.module.css";
+import Link from "next/link";
 
 const Newsletter = () => {
-    return (
-        <>
-            <div className={style.container}>
-                <h3 className={style.h3}>Suscríbete a nuestro boletín de noticias</h3>
-                <p className={style.p}>Recibe noticias diarias sobre próximas ofertas y promociones de nuestros productos.</p>
-                <form className={style.form}>
-                    <input className={style.input} type="email" placeholder='Correo' />
-                    <button className={style.btn_submit} type='submit'>Subscribirse</button>
-                </form>
-            </div>
-        </>
-    )
-}
+  return (
+    <>
+      <div className={style.container}>
+        <Link href="/reviews">
+          <button className={style.orangeButton}>
+            Dejanos tu opinión sobre la pagina
+          </button>
+        </Link>
+      </div>
+    </>
+  );
+};
 
-export default Newsletter
+export default Newsletter;

@@ -14,8 +14,6 @@ const LoginPage = () => {
   return (
       <div>
         <Provider store={store}>
-          <Header/>
-          <NavBar/>
           <Detail/>
           <Newsletter/>
           <Footer/>

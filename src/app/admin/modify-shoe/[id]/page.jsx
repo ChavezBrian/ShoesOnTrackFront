@@ -13,12 +13,19 @@ import { useParams } from "next/navigation";
 const ModifyShoe = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const [isClient, setIsClient] = useState(false);
   const { id } = useParams();
+
+  useEffect(() => {
+    if (!user?.isAdmin) window.location.href = "/";
+    else setIsClient(true);
+  }, [user]);
 
   const [inputDisabled, setInputDisabled] = useState(false);
 
   const medidas = [
-    19,20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48
+    19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37,
+    38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48,
   ];
 
   const categories = [
@@ -133,15 +140,15 @@ const ModifyShoe = () => {
     e.preventDefault();
     const formErrors = validateModify(shoe);
     setErrors(formErrors);
-  
+
     if (Object.keys(formErrors).length === 0) {
       try {
         const response = await dispatch(updateShoe(shoe));
-  
+
         if (!response.error) {
           // Mostrar alerta cuando se crea exitosamente un "shoe"
           toast.success("Successfully shoe modify!");
-  
+
           // Resetear el estado del formulario después de un envío exitoso
           setShoe({
             id: "",
@@ -153,22 +160,23 @@ const ModifyShoe = () => {
             stock: "",
             sizes: [],
           });
-  
+
           // Recargar la página después de 1.5 segundos
           setTimeout(() => {
             window.location.reload();
           }, 1500);
         } else {
-          toast.error(`Ups! ${response.error.message || 'Error desconocido'}`);
+          toast.error(`Ups! ${response.error.message || "Error desconocido"}`);
           setTimeout(() => setMessage(""), 5000);
         }
       } catch (error) {
-        toast.error(`Ups! Hubo un problema: ${error.message || 'Error desconocido'}`);
+        toast.error(
+          `Ups! Hubo un problema: ${error.message || "Error desconocido"}`
+        );
         setTimeout(() => setMessage(""), 5000);
       }
     }
   };
-  
 
   const handleDisabled = () => {
     for (let error in errors) {
@@ -179,24 +187,25 @@ const ModifyShoe = () => {
 
   useEffect(() => {
     if (id && !shoe.id) {
-      setShoe(prevShoe => ({
+      setShoe((prevShoe) => ({
         ...prevShoe,
         id: id,
       }));
     }
   }, [id]); // solo ejecutar cuando id cambia
-  
 
   //   useEffect(() => {
   //     dispatch(getProductsname(name))
   //   }, [name]);
 
-    console.log(id);
-    console.log(shoe)
+  console.log(id);
+  console.log(shoe);
 
   return (
     <div className={style.conte}>
-      <div><Toaster/></div>
+      <div>
+        <Toaster />
+      </div>
       <form className={style.forcreate} onSubmit={handleSubmit}>
         <h4>User: {user.email}</h4>
         <h2>MODIFY YOUR SHOE</h2>
@@ -222,13 +231,13 @@ const ModifyShoe = () => {
           <span>{errors.price}</span>
           <br />
           <label>Image:</label>
-        <input
-          type="file"
-          name="image"
-          accept="image/*"
-          onChange={handleImageUpload}
-        />
-        <span>{errors.image}</span>
+          <input
+            type="file"
+            name="image"
+            accept="image/*"
+            onChange={handleImageUpload}
+          />
+          <span>{errors.image}</span>
 
           <br />
 

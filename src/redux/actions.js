@@ -25,6 +25,7 @@ import {
   DELETE_SHOE,
   GET_ALL_CARTS,
   GET_ALL_FAVS,
+  GET_TESTIMONIALS,
   NEW_CART,
   NEW_FAVORITE,
   REMOVE_CART_BACK,
@@ -32,13 +33,46 @@ import {
   SEND_EMAIL_SUCCESS,
   SEND_EMAIL_REQUEST,
   SEND_EMAIL_FAILURE,
+  GET_ALL_REVIEWS,
+  POST_REVIEW,
+  DELETE_REVIEW,
 } from "./action-type";
 import { data } from "autoprefixer";
 
 const URL = 'https://deploy-back-wine.vercel.app';
 
+export function getAllReviews() {
+  
+  return async function (dispatch) {
+    const response = await axios.get(`${URL}/reviews`);
+    dispatch({
+      type: GET_ALL_REVIEWS,
+      payload: response.data,
+    });
+  };
+}
+
+export function postReview(objectReview) {
+  return async function (dispatch) {
+    const response = await axios.post(`${URL}/reviews`, objectReview);
+    dispatch({
+      type: POST_REVIEW,
+      payload: response.data,
+    });
+  };
+}
+
+export function deleteReview(userId) {
+  return async function (dispatch) {
+    const response = await axios.post(`${URL}/reviews/delete`, userId);
+    dispatch({
+      type: DELETE_REVIEW,
+      payload: response.data,
+    });
+  };
+}
+
 export function getAllFavs(id) {
-  console.log('me despacharon');
   
   return async function (dispatch) {
     const response = await axios.get(`${URL}/favs/${id}`);
@@ -134,6 +168,20 @@ export const getFiltersAndPagination = (filtros, pageNumber) => {
       });
     } catch (error) {
       console.error('Error en la solicitud de paginación con filtros:', error);
+    }
+  };
+};
+
+export const getTestimonials = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get('/reviews');
+      dispatch({
+        type: GET_TESTIMONIALS,
+        payload: data,
+      });
+    } catch (error) {
+      console.error(error);
     }
   };
 };

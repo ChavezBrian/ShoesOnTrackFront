@@ -123,5 +123,6 @@ display: flex;
   margin-bottom: 10px;
   transition: all .3s;
   text-align: center;
+  cursor: pointer;
 }
 

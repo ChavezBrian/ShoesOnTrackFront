@@ -1,6 +1,7 @@
 "use client";
 import Navbar from "../../components/navbar/Navbar.jsx";
 import Footer from "../../components/footer/Footer.jsx";
+import { useDispatch, useSelector } from "react-redux";
 import "./aboutUs.css";
 import Newsletter from "../../components/newsletter/Newsletter.jsx";
 
@@ -26,9 +27,10 @@ const github = (
   </svg>
 );
 const About = () => {
+  const user = useSelector((state) => state.user);
   return (
     <>
-      <Navbar />
+      <Navbar user={user}/>
       <section className="container flex-column text-white">
         {/* <div>
                     <p className='mt-5 fs-4'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur voluptates asperiores earum maxime, nulla quis necessitatibus ad blanditiis animi officiis autem repellendus nam amet ea voluptatum voluptatem? Veniam, commodi doloremque.</p>

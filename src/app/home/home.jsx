@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import Cards from "@/components/cardsContainer/cards.jsx";
-import Header from "@/components/header/header";
 import Filters from "@/components/filters/Filters";
 import FilterCategory from "@/components/filters/filterCategory";
 import Footer from "@/components/footer/Footer";
@@ -15,10 +14,14 @@ import styles from "./Home.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getFiltersAndPagination, getAllFavs, getAllCarts } from "@/redux/actions";
 import { useLocalStorage } from "@/helpers/localStorage/useLocalStorage";
+import axios from "axios";
 
 const HomePage = () => {
   const Page = useSelector((state) => state.indexProductShow);
-  const [initialPageSet, setInitialPageSet] = useState(1);
+  const [initialPageSet, setInitialPageSet] = useLocalStorage(
+    "initialPageSet",
+    1
+  );
   const [initialFilters, setInitialFilters] = useLocalStorage(
     "initialFilters",
     {}
@@ -123,18 +126,13 @@ const HomePage = () => {
   const PriceOpt = ["highest", "lowest"];
   return (
     <div className={styles?.home}>
-      {/* <Header
-        initialFilters={initialFilters}
-        setInitialFilters={setInitialFilters}
-        initialPageSet={initialPageSet}
-        setInitialPageSet={setInitialPageSet}
-      /> */}
       <NavBar
         initialFilters={initialFilters}
         setInitialFilters={setInitialFilters}
         initialPageSet={initialPageSet}
         setInitialPageSet={setInitialPageSet}
-        user={user}
+
+      user={user}
       />
 
       <Filters
