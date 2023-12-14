@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import { useRouter } from "next/router"; // Importa el useRouter
 import style from "./shoe.module.css";
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
@@ -9,26 +8,20 @@ import { deleteShoe } from "@/redux/actions";
 
 const Shoe = ({ id, name, brandName, description, price, color, image }) => {
   const dispatch = useDispatch();
-  const router = useRouter(); // Inicializa useRouter
 
   const handleDelete = async () => {
     try {
       await dispatch(deleteShoe(id));
       // Si el dispatch de la acción se completa sin errores, significa que el zapato se eliminó correctamente
-      toast.success("Successfully deleted shoe!");
-
-      // Recarga la página después de eliminar el zapato
-      router.reload();
+      toast.success("Successfully deleted shoe!")
     } catch (error) {
-      toast.error(`Ups!${error}`); // Muestra el mensaje de error obtenido
+      toast.error(`Ups!${error}`) // Muestra el mensaje de error obtenido
     }
   };
 
   return (
     <div className={style.container}>
-      <div>
-        <Toaster />
-      </div>
+      <div><Toaster/></div>
       {/* <div className={style.brand}>{brandName}</div> */}
       <div className={style.containerImg}>
         <img src={image} alt={name}></img>
