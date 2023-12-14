@@ -2,118 +2,124 @@
   font-family: "Montserrat";
   src: url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap");
 }
-.error{
+.error {
   color: red;
 }
-.centrardiv {
-  height: 100vh;
-  background-color: white;
+
+.bigContainer {
+  width: 95%;
+  margin: auto;
+  background-color: #ebac21;
+  border-radius: 30px;
+  height: fit-content;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 3rem;
+}
+
+.h1 {
+  color: rgb(150, 121, 6);
+  font-family: fantasy;
+}
+
+.containerDetail {
   display: flex;
-  align-items: center; /* Centrar verticalmente */
-  justify-content: center; /* Centrar horizontalmente */
-  text-align: left; /* Ajusta según tus necesidades */
+  height: 50%;
+  width: 100%;
+  margin-top: 1%;
+  align-items: center;
 }
 
-.container{
-height: 100vh;
+.containerImagen {
+  height: 85%;
+  width: 30%;
+  margin-left: 0%;
+  margin-top: 10%;
 }
 
-.h1{
-color: rgb(150, 121, 6);
-font-family: fantasy;
+.imagen {
+  height: 85%;
+  width: 85%;
+  margin-left: 5%;
+  border-radius: 5%;
+  object-fit: cover;
 }
 
-
-.containerDetail{
-display: flex;
-height: 50%;
-width: 100%;
-margin-top: 1%;
-align-items: center;
-
+.containerInfo {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  height: 85%;
+  width: 50%;
+  margin-left: 0%;
+  margin-top: 3%;
 }
 
-.containerImagen{
-height: 85%;
-width: 30%;
-margin-left: 0%; 
-margin-top: 10%;
+.name {
+  text-align: center;
+  font-family: fantasy;
+  margin-top: 1%;
+  font-size: 2rem;
+  letter-spacing: 1.5px;
 }
 
-.imagen{
-
-height: 95%;
-width: 80%;
-margin-left: 10%;
-border-radius: 5%;
-object-fit: cover;
+.description {
+  font-size: 1.1rem;
+  text-align: justify;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  margin-top: 5%;
+  margin-left: 1%;
 }
 
-
-
-.containerInfo{
-
-height: 85%;
-width: 50%;
-margin-left: 0%;
-margin-top: 3%;
+.price {
+  text-align: left;
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-top: 5%;
+  margin-left: 1%;
+  font-size: 1.5em;
+  color: #020102;
 }
 
-.name{
-text-align: center;
-font-family: fantasy;
-margin-top: 1%;
-font-size: 20px;
+.color {
+  text-align: left;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  margin-top: 1%;
+  margin-left: 1%;
 }
 
-.description{
-text-align: left;
-font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-margin-top: 5%;
-margin-left: 1%;
-}
-
-.price{
-text-align: left;
-font-family: Verdana, Geneva, Tahoma, sans-serif;
-margin-top: 3%;
-margin-left: 1%;
-font-size: 2em;
-color: rgba(240, 228, 12, 0.864);
-}
-
-.color{
-text-align: left;
-font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-margin-top: 1%;
-margin-left: 1%;
-}
-
-.line{
-background-color: rgba(0,0,0,.1);
+.line {
+  background-color: rgba(0, 0, 0, 0.1);
   /* background-color: var(--color-mask-black-2); */
   height: 2px;
   margin-top: 5%;
 }
 
-.line1{
-background-color: rgba(0,0,0,.1);
+.line1 {
+  background-color: rgba(0, 0, 0, 0.1);
   /* background-color: var(--color-mask-black-2); */
   height: 2px;
   margin-top: 1%;
 }
 
-.containerButton{
-/* border: 1px solid var(--secondary); */
-height: 50%;
-width: 15%;
-display: flex;
-flex-direction: column;
-margin-left: 1%;
+.detail {
+  padding: 3px 0px;
+  text-align: justify;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
-.Button{
-display: flex;
+.containerButton {
+  /* border: 1px solid var(--secondary); */
+  height: 50%;
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 1%;
+}
+
+.Button {
+  font-weight: bold;
+  margin: auto;
+  display: flex;
+  width: 100px;
   align-items: center;
   gap: 5px;
   width: 100%;
@@ -121,8 +127,28 @@ display: flex;
   border: 1px solid var(--primary);
   background-color: transparent;
   margin-bottom: 10px;
-  transition: all .3s;
+  transition: all 0.3s;
   text-align: center;
   cursor: pointer;
+  border-radius: 10px;
 }
 
+.selectCont {
+  width: 90%;
+  margin: auto;
+}
+
+.select {
+  width: 100px;
+  font-size: 1em;
+  font-weight: bold;
+  background-color: transparent;
+  padding: 5px 3px;
+  border-radius: 5px;
+}
+
+.subTitles {
+  font-size: 1.2em;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  margin-right: 0.2em;
+}

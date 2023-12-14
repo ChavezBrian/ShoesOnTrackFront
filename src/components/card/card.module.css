@@ -22,12 +22,9 @@
   transition: box-shadow 0.3s ease-in-out; /* Agregamos una transición para suavizar el cambio de sombra al pasar el mouse */
 }
 
-.container:hover {
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Cambiamos la sombra al pasar el mouse para dar un efecto de elevación */
-}
-
 .brand {
   text-decoration: none;
+  text-decoration-line: none;
   position: absolute;
   left: 33px;
   top: 40px;
@@ -84,6 +81,8 @@
 }
 
 .price {
+  text-decoration: none;
+  text-decoration-line: none;
   font-size: 25px; /* Aumentamos el tamaño del precio */
   color: #020102;
   font-weight: 600; /* Agregamos un poco de espacio sobre el precio */

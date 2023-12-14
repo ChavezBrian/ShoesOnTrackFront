@@ -8,25 +8,34 @@ const ShoesPage = () => {
   const dispatch = useDispatch();
   const shoes = useSelector((state) => state.userProducts);
   const user = useSelector((state) => state.user);
-  const [isClient, setIsClient] = useState(false)
+  const [isClient, setIsClient] = useState(false);
+  const [refresh, setRefresh] = useState(false);
+
+  const loadShoes = () => {
+    if (user?.id && (refresh || !isClient)) {
+      dispatch(getUserProducts);
+      setRefresh(false);
+      setIsClient(true);
+    }
+  };
 
   useEffect(() => {
-    if (!user?.isAdmin)window.location.href = "/";
-    else setIsClient(true)
+    if (!user?.isAdmin) window.location.href = "/";
+    else setIsClient(true);
   }, [user]);
 
   useEffect(() => {
     dispatch(getUserProducts());
-  }, [shoes]);
+  }, []);
 
   return (
     <div>
-      {isClient && 
-      <div>
-      <h2>ADMIN: {user?.name}</h2>
-      <ShoeList shoes={shoes} />
-      </div>
-      }
+      {isClient && (
+        <div>
+          <h2>ADMIN: {user?.name}</h2>
+          <ShoeList shoes={shoes} />
+        </div>
+      )}
     </div>
   );
 };

@@ -1,0 +1,173 @@
+.bigCont {
+  margin: auto;
+  width: 90%;
+}
+
+.name {
+  text-align: center;
+  min-width: 300px;
+  max-width: 300px;
+}
+
+.titleCont {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.rstrBtn {
+  cursor: pointer;
+  font-size: large;
+  margin: auto;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  padding: 0.5%;
+  height: fit-content;
+  background-color: #ebac21;
+  width: fit-content;
+  border: 1px black solid;
+  color: #020102;
+  border-radius: 10px;
+  transition: cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.4s;
+}
+
+.rstrBtn:hover {
+  transform: translate(5px, -5px);
+}
+
+.rstrBtn:active {
+  transform: translate(-5px, 5px);
+}
+.container {
+  justify-content: space-between;
+  color: #ffffff;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  font-weight: bolder;
+  align-items: center;
+  border-bottom: 1px solid #ffffff;
+  background-color: #020102;
+  padding: 1% 2%;
+  border-radius: 30px;
+  margin-bottom: 0.5rem;
+  border: 2px solid #ebac21;
+}
+
+.imagen {
+  border-radius: 20px;
+  width: 150px;
+  height: 150px;
+}
+
+.title {
+  width: fit-content;
+  margin: auto;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  padding: 0.8rem 1.2rem 0.8rem 1.2rem;
+  /* margin: auto;
+  border-radius: 30px;
+  width: fit-content;
+  border: 0.2rem solid #ebac21; */
+  font-weight: bold;
+  background-color: #ebac21;
+  border-radius: 15px;
+}
+.filler {
+  width: fit-content;
+  border-radius: 15px;
+  background-color: #ebac21;
+  padding: 0.8rem 1.2rem 0.8rem 1.2rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  margin: auto;
+}
+
+.button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgb(20, 20, 20);
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+  cursor: pointer;
+  transition-duration: 0.3s;
+  overflow: hidden;
+  position: relative;
+}
+
+.svgIcon {
+  width: 12px;
+  transition-duration: 0.3s;
+}
+
+.svgIcon {
+  fill: white;
+}
+.path {
+  fill: white;
+}
+
+.button:hover {
+  width: 80px;
+  border-radius: 50px;
+  transition-duration: 0.3s;
+  background-color: #ea052f;
+  align-items: center;
+}
+
+.button:hover .svgIcon {
+  width: 50px;
+  transition-duration: 0.3s;
+  transform: translateY(60%);
+}
+
+.button::before {
+  position: absolute;
+  top: -20px;
+  content: "Delete";
+  color: white;
+  transition-duration: 0.3s;
+  font-size: 2px;
+}
+
+.button:hover::before {
+  font-size: 13px;
+  opacity: 1;
+  transform: translateY(30px);
+  transition-duration: 0.3s;
+}
+
+.btnCont {
+  width: fit-content;
+  margin: auto;
+  margin-top: 1rem;
+}
+
+.homeBtn {
+  cursor: pointer;
+  margin: auto;
+  padding: 1%;
+  font-size: larger;
+  font-weight: bold;
+  border: none;
+  background-color: black;
+  margin-bottom: 1em;
+  color: #ebac21;
+  border-radius: 15px;
+  transition: cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.4s;
+}
+
+.homeBtn:hover {
+  transform: translate(5px, -5px);
+}
+
+.homeBtn:active {
+  transform: translate(-5px, 5px);
+}

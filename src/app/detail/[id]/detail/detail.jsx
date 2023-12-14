@@ -13,9 +13,9 @@ import {
 } from "@/redux/actions";
 import { Modal, Button } from "antd";
 import { useRouter } from "next/navigation";
-import { BsCart4 } from "react-icons/bs";
-import Link from "next/link";
+
 import NavBar from "@/components/navbar/Navbar";
+import toast, { Toaster } from "react-hot-toast";
 
 const Detail = () => {
   const router = useRouter();
@@ -39,6 +39,8 @@ const Detail = () => {
   const dispatch = useDispatch();
   const [isFav, setIsFav] = useState(false);
   const [isCart, setIsCart] = useState(false);
+  const [size, setSize] = useState(0);
+  const [canAddToCart, setCanAddToCart] = useState(false);
   const Product = useSelector((state) => state.productDetail);
   const user = useSelector((state) => state.user);
   const favs = useSelector((state) => state.favorites);
@@ -72,8 +74,22 @@ const Detail = () => {
   };
 
   useEffect(() => {
+    if (size === 0) {
+      setCanAddToCart(false);
+    } else {
+      setCanAddToCart(true);
+    }
+    console.log(size);
+    console.log(canAddToCart);
+  }, [size]);
+
+  useEffect(() => {
     loadIdProduct();
   }, []);
+
+  const handleSizeChange = (event) => {
+    setSize(event.target.value);
+  };
 
   const handleFavorite = () => {
     if (!user?.email) {
@@ -84,13 +100,17 @@ const Detail = () => {
     if (isFav) {
       setIsFav(false);
       dispatch(removeFavoriteBack({ UserId: user.id, ProductId: id }));
+      toast.error("Removed");
     } else {
       setIsFav(true);
       dispatch(AddFavoriteBack({ UserId: user.id, ProductId: id }));
+      toast.success("Added!");
     }
   };
 
-  const handleCarrito = () => {
+  const handleCarrito = async () => {
+    const canAdd = await canAddToCart;
+    console.log(canAdd);
     if (!user?.email) {
       setModalVisible(true);
       setModalMessage("To add to cart, log in or register.");
@@ -99,17 +119,22 @@ const Detail = () => {
     if (isCart) {
       setIsCart(false);
       dispatch(removeCartBack({ UserId: user.id, ProductId: id }));
-    } else {
+      toast.error("Removed");
+    } else if (canAdd) {
       setIsCart(true);
-      dispatch(AddCartBack({ UserId: user.id, ProductId: id }));
-    }
+      dispatch(
+        AddCartBack({ UserId: user.id, ProductId: id, ProductSize: size })
+      );
+      toast.success("Added!");
+    } else toast.error("Pick a size first");
   };
+
   return (
     <div>
+      <Toaster />
       <NavBar user={user} />
       {Product && Product.id === id && (
-        <div className={styles.container}>
-          <div className={styles.line1}></div>
+        <div className={styles.bigContainer}>
           <div className={styles.containerDetail}>
             <div className={styles.containerImagen}>
               <Image
@@ -126,12 +151,20 @@ const Detail = () => {
               <div className={styles.line}></div>
               <div className={styles.price}>${Product.price}</div>
               <div className={styles.color}>
-                <h5>Colores Disponibles:</h5>
+                <h4 className={styles.subTitles}>Colores Disponibles:</h4>
                 {Product?.color}
               </div>
               <div className={styles.color}>
-                <h5>Material:</h5>
-                {Product?.details}
+                <h4 className={styles.subTitles}>Details:</h4>
+                <ul>
+                  {Product?.details.map((detail, index) => {
+                    return (
+                      <li key={index} className={styles.detail}>
+                        {detail}
+                      </li>
+                    );
+                  })}
+                </ul>
               </div>
               <div className={styles.line}></div>
               <div className={styles.name}>Stock: {Product.stock}</div>
@@ -146,6 +179,24 @@ const Detail = () => {
                 <button className={styles.Button} onClick={handleFavorite}>
                   {isFav ? "Remove from Favorites ❤️" : "Add to Favorites 🤍"}
                 </button>
+              </div>
+              <br />
+              <div className={styles.selectCont}>
+                <span className={styles.subTitles}>Sizes:</span>
+                <select
+                  id="Sizes"
+                  onChange={handleSizeChange}
+                  className={styles.select}
+                >
+                  <option value={0}>{""}</option>
+                  {Product.sizes.map((size, index) => {
+                    return (
+                      <option key={index} value={size}>
+                        {size}
+                      </option>
+                    );
+                  })}
+                </select>
               </div>
             </div>
           </div>
@@ -170,38 +221,9 @@ const Detail = () => {
               </Modal>
             </div>
           )}
-          <div className={styles.line}></div>
         </div>
       )}
     </div>
-
-    // <div>
-    //   <div className={styles.centrardiv}>
-    //     {Product && Product.id === id && (
-    //       <div className={styles?.productdetail}>
-    //         <div className={styles?.productinfo}>
-    //           <h2 className={styles.productname}>{Product?.name}</h2>
-    //           <h2 className={styles.spacing}>Brand: {Product?.brandName}</h2>
-    //           <h2 className={styles.spacing}>{`Price: $${Product.price}`}</h2>
-    //           <h2 className={styles.spacing}>Colors: {Product?.color}</h2>
-    //           <h2 className={styles.spacing}>{Product?.material}</h2>
-    //           <h2 className={styles.spacing01}>Description:</h2>
-    //           <h2>{Product?.description}</h2>
-    //           <button className={styles.buttonCompra} onClick={handleClick}>
-    //             Comprar
-    //           </button>
-    //         </div>
-    //         <Image
-    //           className={styles.image}
-    //           src={Product?.image}
-    //           width={600}
-    //           height={600}
-    //           alt={Product?.name || id}
-    //         />
-    //       </div>
-    //     )}
-    //   </div>
-    // </div>
   );
 };
 
