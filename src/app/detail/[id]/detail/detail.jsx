@@ -167,7 +167,6 @@ const Detail = () => {
                 </ul>
               </div>
               <div className={styles.line}></div>
-              <div className={styles.name}>Stock: {Product.stock}</div>
             </div>
             <div className={styles.containerButton}>
               <div>
