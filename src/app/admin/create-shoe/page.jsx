@@ -305,15 +305,8 @@ const CreateShoes = () => {
             />
             <span>{errors.price}</span>
             <br />
-            <label>Image:</label>
-            <input
-              type="file"
-              name="image"
-              accept="image/*"
-              onChange={handleImageUpload}
-            />
-            <span>{errors.image}</span>
-            <br />
+
+
 
             <label>Shoe Category:</label>
             <select
@@ -397,6 +390,15 @@ const CreateShoes = () => {
                 <br />
               </div>
             </div>
+            <br />
+            <label>Image:</label>
+            <input
+              type="file"
+              name="image"
+              accept="image/*"
+              onChange={handleImageUpload}
+            />
+            <span>{errors.image}</span>
             <br />
             <label>Description:</label>
             <textarea
