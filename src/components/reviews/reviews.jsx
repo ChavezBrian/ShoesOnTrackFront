@@ -44,6 +44,18 @@ const Reviews = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // Verificar si el usuario está logeado
+    if (!user || !user.id) {
+      // Mostrar un mensaje de error o redirigir a la página de inicio de sesión
+      Swal.fire(
+        "Error sending message",
+        "You need to be logged in to submit a review",
+        "error"
+      );
+      return;
+    }
+
     try {
       const { data } = await axios.post("/reviews", {
         userId: user.id,
