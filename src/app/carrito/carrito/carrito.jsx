@@ -62,7 +62,7 @@ const Carrito = () => {
   const handleCarrito = async (id) => {
     const deleted = carts.filter((fav) => fav.id === id);
     Swal.fire({
-      title: "Do you want to delete this product from favorites?",
+      title: "Do you want to delete this product from cart?",
       showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: "Yes",
